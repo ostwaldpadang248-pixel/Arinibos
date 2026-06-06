@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESOURCES ID Realtime Dashboard</title>
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div>
+        <h1>RESOURCES ID - Realtime Maintenance Dashboard</h1>
+        <p>Semua perubahan otomatis tersinkron untuk semua pengguna.</p>
+      </div>
+      <div class="status-box">
+        <span id="connectionStatus" class="status-dot offline">Offline</span>
+        <span id="syncText">Menunggu koneksi...</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="section-header">
+          <h2>Informasi Laporan</h2>
+          <button id="resetStateBtn" class="btn btn-secondary">Reset Laporan</button>
+        </div>
+        <div class="grid-4">
+          <label>
+            Judul Laporan
+            <input type="text" id="titleInput" placeholder="Judul laporan" />
+          </label>
+          <label>
+            Tanggal
+            <input type="date" id="dateInput" />
+          </label>
+          <label>
+            Shift
+            <select id="shiftInput">
+              <option>Day</option>
+              <option>Night</option>
+            </select>
+          </label>
+          <label>
+            Logo Perusahaan
+            <div class="upload-row">
+              <input type="file" id="logoInput" accept="image/*" />
+              <button id="clearLogoBtn" class="btn btn-danger small">Hapus Logo</button>
+            </div>
+          </label>
+        </div>
+        <div class="grid-3 top-gap">
+          <label>
+            Lost Time Mulai
+            <input type="time" id="lostTimeStartInput" />
+          </label>
+          <label>
+            Lost Time Akhir
+            <input type="time" id="lostTimeEndInput" />
+          </label>
+          <label>
+            Alasan Lost Time
+            <input type="text" id="lostTimeReasonInput" placeholder="Contoh: Jalan Licin" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <h2>Manpower</h2>
+          <span class="tag">Realtime</span>
+        </div>
+        <div class="grid-3">
+          <label>
+            Foreman
+            <input type="number" id="foremanInput" min="0" />
+          </label>
+          <label>
+            HSES
+            <input type="number" id="hsesInput" min="0" />
+          </label>
+          <label>
+            Checker
+            <input type="number" id="checkerInput" min="0" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <h2>Unit Breakdown / Standby</h2>
+          <button id="addBreakdownBtn" class="btn btn-primary">Tambah Item</button>
+        </div>
+        <div id="breakdownList" class="list-grid"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <h2>Equipment Aktif</h2>
+          <button id="addEquipmentBtn" class="btn btn-primary">Tambah Unit</button>
+        </div>
+        <div id="equipmentList" class="list-grid"></div>
+      </section>
+
+      <section class="card small-card">
+        <div class="section-header">
+          <h2>Info Realtime</h2>
+        </div>
+        <p id="infoText">Semua pengguna yang tersambung akan menerima pembaruan saat ada perubahan data atau upload gambar.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js?v=2" defer></script>
+</body>
+</html>
